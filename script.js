@@ -99,10 +99,10 @@ const handlePhysicalKeyboard = () => {
         else if(code === "ShiftLeft" || code === "ShiftRight") {
             replaceKeyboard(localStorage.getItem('lang') === 'en' ? enShift : ruShift);
         }
-        else if (code === 'AltLeft' || code === 'AltRight') {
+        else if(code === 'AltLeft' || code === 'AltRight') {
             event.preventDefault();
         }
-        else if(event.ctrlKey && event.altKey) {   
+        else if(event.ctrlKey && event.altKey) {  
             changeLanguage();
         }
         if(isSpecial(code)) {
@@ -268,6 +268,10 @@ const changeLanguage = () => {
     if(capsLock) {
         capsLock = !capsLock;
         handleCapsLock();
+    }
+    if(shift) {
+        shift = !shift;
+        replaceKeyboard(localStorage.getItem('lang') === 'en' ? enShift : ruShift);
     }
 }
 
