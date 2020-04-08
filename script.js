@@ -93,16 +93,16 @@ const handlePhysicalKeyboard = () => {
         if(code === "Tab") {
             handleTab();
         }
-        else if(code === "CapsLock") {
+        if(code === "CapsLock") {
             handleCapsLock();
         }
-        else if(code === "ShiftLeft" || code === "ShiftRight") {
+        if(code === "ShiftLeft" || code === "ShiftRight") {
             replaceKeyboard(localStorage.getItem('lang') === 'en' ? enShift : ruShift);
         }
-        else if(code === 'AltLeft' || code === 'AltRight') {
+        if(code === 'AltLeft' || code === 'AltRight') {
             event.preventDefault();
         }
-        else if(event.ctrlKey && event.altKey) {  
+        if(event.ctrlKey && event.altKey) {  
             changeLanguage();
         }
         if(isSpecial(code)) {
