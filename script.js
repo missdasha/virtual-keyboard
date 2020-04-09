@@ -102,7 +102,8 @@ const handlePhysicalKeyboard = () => {
         if(code === 'AltLeft' || code === 'AltRight') {
             event.preventDefault();
         }
-        if(event.ctrlKey && event.altKey) {  
+        if(event.ctrlKey && event.altKey) { 
+            event.preventDefault();
             changeLanguage();
         }
         if(isSpecial(code)) {
@@ -231,11 +232,21 @@ const handleCapsLock = () => {
     const buttons = document.querySelectorAll('.keyboard__button');
     buttons.forEach((btn) => {
         if(btn.innerHTML.length === 1) {
-            if(!capsLock) {
-                btn.innerHTML = btn.innerHTML.toUpperCase();
+            if(shift) {
+                if(capsLock) {
+                    btn.innerHTML = btn.innerHTML.toUpperCase();
+                }
+                else {
+                    btn.innerHTML = btn.innerHTML.toLowerCase();
+                }
             }
             else {
-                btn.innerHTML = btn.innerHTML.toLowerCase();
+                if(capsLock) {
+                    btn.innerHTML = btn.innerHTML.toLowerCase();
+                }
+                else {
+                    btn.innerHTML = btn.innerHTML.toUpperCase();
+                }
             }
         }
     });
@@ -280,12 +291,29 @@ const replaceKeyboard = arr => {
     rows.forEach((row) => {
         row.remove();
     })
-    if(!shift) {
-        createButtons(arr);
+
+    if(capsLock) {
+        if(shift) {
+            createButtons(localStorage.getItem('lang') === 'en' ? enButtons : ruButtons);
+            handleCapsLock();
+            shift = !shift;
+            capsLock = !capsLock;
+        }
+        else {
+            createButtons(arr);
+            shift = !shift;
+            capsLock = !capsLock;
+            handleCapsLock();
+        }
     }
     else {
-        createButtons(localStorage.getItem('lang') === 'en' ? enButtons : ruButtons);
+        if(shift) {
+            createButtons(localStorage.getItem('lang') === 'en' ? enButtons : ruButtons);
+        }
+        else {
+            createButtons(arr);
+        }
+        shift = !shift;
     }
-    shift = !shift;
 }
 
