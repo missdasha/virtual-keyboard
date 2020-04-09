@@ -1,0 +1,84 @@
+.container {
+    height: 100%;
+    width: 710px;
+    margin: 0 auto;
+}
+
+.text {
+    text-align: center;
+}
+
+.textarea {
+    width: 100%;
+    height: 200px;
+    margin: 0 auto 20px;
+    box-sizing: border-box;
+    resize: none;
+}
+
+.keyboard {
+    box-sizing: border-box;
+    width: 100%;
+    height: 240px;
+    margin: 0 auto;
+    padding: 5px;
+    border: grey solid 2px;
+    border-radius: 5px;
+    background-color: rgb(221, 219, 219);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.keyboard__row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.keyboard__button {
+    width: 40px;
+    height: 40px;
+    border-radius: 3px;
+    background-color: grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0px 4px 6px 1px rgba(154, 150, 150, 0.81);
+}
+
+.keyboard__button:hover {
+   color: white;
+   box-shadow: inset -7px 7px 11px 3px rgba(154, 150, 150, 0.81);
+}
+
+#Backspace, #CapsLock {
+    width: 55px;
+}
+
+#Tab{
+    width: 50px;
+}
+
+#Space {
+    width: 200px;
+}
+
+#ShiftLeft {
+    width: 55px;
+}
+
+#ShiftRight {
+    width: 49px;
+}
+
+#Enter {
+    width: 60px;
+}
+
+.pressed {
+    color: rgb(204, 204, 204);
+    transform: scale(1.08);
+    transition: all 0.2s ease-in-out;
+    box-shadow: none;
+}
